@@ -25,7 +25,7 @@ SECRET_KEY = 'y46cr)e_=gwou^_kp!t)m#-^!czf^)3#^lo%gq1!wy3-%687)k'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['djangoblog-richardadalton.c9users.io']
+ALLOWED_HOSTS = ['django-blog-richards-mboladop.c9users.io']
 
 
 # Application definition
@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django_forms_bootstrap',
     'posts',
+    'accounts'
 ]
 
 MIDDLEWARE = [
