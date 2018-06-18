@@ -34,8 +34,9 @@ def create_or_edit_post(request, pk=None):
     if request.method == "POST":
         form = BlogPostForm(request.POST, request.FILES, instance=post)
         if form.is_valid():
-            post= form.save(commit=False)
-            post.owner = request.user
+            post = form.save(commit=False)
+            if not post.author:
+                post.author = request.user
             post.save()
             post = form.save()
             return redirect('post_detail', post.pk)
