@@ -4,7 +4,11 @@ from .models import Post
 from .forms import BlogPostForm
 
 def get_posts(request):
-    posts = Post.objects.all()
+    if request.user.is_authenticated:
+        posts = Post.objects.filter(owner=request.user)
+    else:
+        posts = Post.objects.all()
+    
     return render(request, "posts/blogposts.html", {'posts': posts})
 
 def post_detail(request, pk):
@@ -30,6 +34,9 @@ def create_or_edit_post(request, pk=None):
     if request.method == "POST":
         form = BlogPostForm(request.POST, request.FILES, instance=post)
         if form.is_valid():
+            post= form.save(commit=False)
+            post.owner = request.user
+            post.save()
             post = form.save()
             return redirect('post_detail', post.pk)
     else:

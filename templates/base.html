@@ -24,11 +24,23 @@
                 </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="{% url 'new_post' %}">New Post</a></li>
                     </ul>
             </div>
         </div>
     </nav>
+    
+    <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    {% if user.is_authenticated %}
+                    <li><a href="{% url 'logout' %}"><i class="fa fa-sign-out"></i> Logout</a></li>
+                    <li><a href="{% url 'new_post' %}">New Post</a></li>
+                    <li><a href="{% url 'profile' %}"><i class="fa fa-heart"></i> Profile</a></li>
+                    {% else %}
+                    <li><a href="{% url 'register' %}"><i class="fa fa-user-plus"></i> Register</a></li>
+                    <li><a href="{% url 'login' %}"><i class="fa fa-sign-in"></i> Login</a></li>
+                    {% endif %}
+                </ul>
+            </div>
 
     <div id="masthead">
         <div class="container">
