@@ -20,7 +20,11 @@
                     <p><span class="boldtext">Views:</span> {{post.views}}</p>
                     <p><span class="boldtext">Tag:</span> {{ post.tag }}</p>
                     <a href="{% url 'get_posts' %}" class="btn btn-default">Back to Blog</a>
+                    
+                    {% if post.owner == request.user or user.is_superuser %}
                     <a href="{% url 'edit_post' post.id %}" class="btn btn-default">Edit Post</a>
+                    {% endif %}
+                    
                     <hr>
                 </div>
             </div>
