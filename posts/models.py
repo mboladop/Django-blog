@@ -14,7 +14,11 @@ class Post(models.Model):
     views = models.IntegerField(default=0)
     tag = models.CharField(max_length=30, blank=True, null=True)
     image = models.ImageField(upload_to="images", blank=True, null=True)
-    owner = models.ForeignKey(User, related_name = 'posts', null = True, default = 1, on_delete=models.SET_NULL)
-    
+    owner = models.ForeignKey(User, related_name = 'posts', null = True, default = 1, on_delete=models.SET_NULL)#one to many relationship
+    likes = models.ManyToManyField(User, related_name='liked_posts')# many to many relationship
+
     def __str__(self):
         return self.title
+        
+#user = models.ForeignKey(User, related_name='liked_by', null=False, on.delete= models.CASCADE)
+#post = models.ForeignKey(Post, related_name='likes', null=False, on.delete= models.CASCADE)

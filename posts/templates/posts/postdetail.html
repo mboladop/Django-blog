@@ -19,6 +19,7 @@
                     <p><span class="boldtext">Published on:</span> {{ post.published_date }} </p>
                     <p><span class="boldtext">Views:</span> {{post.views}}</p>
                     <p><span class="boldtext">Tag:</span> {{ post.tag }}</p>
+                    <p><span class="boldtext">Likes:</span> {{post.likes.all | length}}</p>
                     <a href="{% url 'get_posts' %}" class="btn btn-default">Back to Blog</a>
                     
                     {% if post.owner == request.user or user.is_superuser %}

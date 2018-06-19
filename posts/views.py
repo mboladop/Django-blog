@@ -11,7 +11,15 @@ def get_posts(request):
         posts = Post.objects.all()
     
     return render(request, "posts/blogposts.html", {'posts': posts})
-
+    
+def liked_posts(request):
+    if request.user.is_authenticated:
+        posts = Post.objects.filter(likes=request.user)
+    else:
+        posts = Post.objects.all()
+    
+    return render(request, "accounts/profile.html", {'posts': posts})
+    
 def post_detail(request, pk):
     """
     Create a view that returns a single
@@ -41,7 +49,7 @@ def new_post(request):
         
 def edit_post(request, pk):
     post = get_object_or_404(Post, pk=pk)
-    if not(request.user == post.author or request.user.is_superuser):
+    if not(request.user == post.owner or request.user.is_superuser):
         return HttpResponseForbidden()
     if request.method == "POST":
         form = BlogPostForm(request.POST, request.FILES, instance=post)
