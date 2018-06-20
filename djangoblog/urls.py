@@ -23,7 +23,7 @@ from accounts import urls as accounts_urls
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-     path('accounts/', include(accounts_urls)),
+    path('accounts/', include(accounts_urls)),
     path('', include(posts_urls)),
     path('media/<path:path>', serve, {'document_root': settings.MEDIA_ROOT}),
    

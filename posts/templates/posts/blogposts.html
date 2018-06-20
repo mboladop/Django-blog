@@ -16,7 +16,9 @@
                         <p>{{ post.content|truncatewords:30 }}</p>
                         <p><a href="{% url 'post_detail' post.id %}"  class="btn btn-default">Read more</a></p>
                         <p><span class="boldtext">Published on:</span> {{ post.published_date }} </p>
-                        <p><span class="boldtext">Views:</span> {{post.views}} | <span class="boldtext">Tag:</span> {{ post.tag }} | <span class="boldtext">Likes:</span> {{post.likes.all | length}} | </p>
+                        <p><span class="boldtext">Views:</span> {{post.views}} | 
+                        <span class="boldtext">Tag:</span> {{ post.tag }} | 
+                        <span class="boldtext">Likes:</span> {{post.likes.all | length}} | </p>
                        
                     </div>
                 </div>
